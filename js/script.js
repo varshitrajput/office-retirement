@@ -11,12 +11,15 @@ $(document).ready(function(){
 });
 
 function updateCountdown() {
-  const eventDate = new Date('May 28, 2025 13:00:00').getTime();
+  const countdownEl = document.getElementById('countdown');
+  if (!countdownEl) return; // Prevents errors if element is missing
+
+  const eventDate = new Date('2025-05-28T13:00:00+05:30').getTime();
   const now = new Date().getTime();
   const distance = eventDate - now;
 
   if (distance < 0) {
-    document.getElementById('countdown').innerText = "The event has started!";
+    countdownEl.innerText = "🎉 The event has started!";
     return;
   }
 
@@ -25,12 +28,17 @@ function updateCountdown() {
   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  document.getElementById('countdown').innerText =
-    `Countdown: ${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`;
+  // Add leading zeros
+  const format = (num) => (num < 10 ? "0" + num : num);
+
+  countdownEl.innerText = 
+    `Countdown: ${days} Days ${format(hours)} Hours ${format(minutes)} Minutes ${format(seconds)} Seconds`;
 }
 
+// Start countdown
 updateCountdown();
 setInterval(updateCountdown, 1000);
+
 
 // Confetti blast function
 function launchConfetti() {
