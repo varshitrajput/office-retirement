@@ -11,7 +11,7 @@ $(document).ready(function(){
 });
 
 function updateCountdown() {
-  const eventDate = new Date('May 30, 2025 18:00:00').getTime();
+  const eventDate = new Date('May 28, 2025 13:00:00').getTime();
   const now = new Date().getTime();
   const distance = eventDate - now;
 
